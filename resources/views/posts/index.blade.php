@@ -31,7 +31,9 @@
                             <td>{{ $item['title'] }}</td>
                             <td>{{ $item['content'] }}</td>
                             <td>{{ $item['created_at'] }}</td>
-                            <td><a href="{{ route('posts.create') }}"><i class="bi bi-pencil-square"></i></a></td>
+                            <td><a href="{{ route('posts.create') }}"><i class="bi bi-pencil-square"></i></a>
+                              <a href="{{ route('posts.destroy') }}"><i class="bi bi-trash"></i></a>
+                            </td>
                           </tr>
                           @endforeach
                         </tbody>

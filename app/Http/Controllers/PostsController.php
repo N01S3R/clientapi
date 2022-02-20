@@ -38,7 +38,13 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client = new \GuzzleHttp\Client();
+        $url = "http://kandydat.t/api/post";
+        $request = $client->post($url, [
+            'user_id'=> auth()->user()->id,
+            'title' => $request->title,
+            'content' => $request->content
+        ]);
     }
 
     /**
@@ -83,6 +89,8 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $client = new \GuzzleHttp\Client();
+        $url = "http://kandydat.t/api/post/" . $id;
+        $client->delete($url);
     }
 }

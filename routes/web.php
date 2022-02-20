@@ -25,6 +25,8 @@ Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 // Posts
 Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [PostsController::class, 'create'])->name('posts.create');
+Route::post('/posts/store', [PostsController::class, 'store'])->name('posts.store');
+Route::delete('/posts/delete', [PostsController::class, 'destroy'])->name('posts.destroy');
 // Comments
 Route::get('/comments', [CommentsController::class, 'index'])->name('comments.index');
 
