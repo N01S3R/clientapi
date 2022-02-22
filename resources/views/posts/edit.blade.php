@@ -6,16 +6,13 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-
+@dd($response)
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                      <a class="btn btn-info" href="{{ route('posts.create') }}"> <i class="fa fa-plus"></i>New Post</a>
-                    </div>
                     <table class="table">
                         <thead>
                           <tr>

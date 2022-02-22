@@ -26,7 +26,9 @@ Route::get('/users', [UsersController::class, 'index'])->name('users.index');
 Route::get('/posts', [PostsController::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [PostsController::class, 'create'])->name('posts.create');
 Route::post('/posts/store', [PostsController::class, 'store'])->name('posts.store');
-Route::delete('/posts/delete', [PostsController::class, 'destroy'])->name('posts.destroy');
+Route::delete('/posts/{id}', [PostsController::class, 'destroy'])->name('posts.destroy');
+Route::get('/posts/{id}', [PostsController::class, 'edit'])->name('posts.edit');
+
 // Comments
 Route::get('/comments', [CommentsController::class, 'index'])->name('comments.index');
 
