@@ -41,21 +41,14 @@ class PostsController extends Controller
         $client = new \GuzzleHttp\Client();
         $url = "http://kandydat.t/api/post";
         $request = $client->post($url, [
-            'user_id'=> auth()->user()->id,
-            'title' => $request->title,
-            'content' => $request->content
+            'headers' => ['Content-Type' => 'application/json'],
+            'body' => json_encode([
+                'user_id'=> auth()->user()->id,
+                'title' => $request->title,
+                'content' => $request->content])
         ]);
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -66,7 +59,10 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $client = new \GuzzleHttp\Client();
+        $request = $client->get("http://kandydat.t/api/post/$id");
+        $response = json_decode($request->getBody(), true);
+        return view('posts.edit')->with('response', $response);
     }
 
     /**
@@ -92,5 +88,7 @@ class PostsController extends Controller
         $client = new \GuzzleHttp\Client();
         $url = "http://kandydat.t/api/post/" . $id;
         $client->delete($url);
+
+        return redirect()->route('posts.index');
     }
 }
